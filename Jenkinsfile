@@ -25,11 +25,15 @@ node {
     // Check out code from source control.
     // -------------------------------------------------------------------------
 
+stages {	
     stage('checkout source') {
+	    steps{
+		    cleanWs()
         checkout scm
 	    println 'Checkout done'
+	    }
     }
-
+}
 
     // -------------------------------------------------------------------------
     // Run all the enclosed stages with access to the Salesforce
