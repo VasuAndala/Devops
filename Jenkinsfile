@@ -27,6 +27,7 @@ node {
 
     stage('checkout source') {
         checkout scm
+	    println 'Checkout done'
     }
 
 
@@ -37,11 +38,13 @@ node {
     
         withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 
+		println 'withCredentials'
             // -------------------------------------------------------------------------
             // Authorize the Dev Hub org with JWT key and give it an alias.
             // -------------------------------------------------------------------------
 
             stage('Authorize Org') {
+		    println 'auth org'
                 rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instance-url ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file}"
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
