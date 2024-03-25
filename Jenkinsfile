@@ -14,7 +14,9 @@ node {
 
     	println SF_USERNAME
 	println SF_CONSUMER_KEY
+	println 'Check Server Key data'
 	println SERVER_KEY_CREDENTALS_ID
+	println SF_INSTANCE_URL
 	
 	def toolbelt = tool 'toolbelt'
 
