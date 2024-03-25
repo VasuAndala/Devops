@@ -7,6 +7,6 @@
   ],
   "name": "Devops",
   "namespace": "",
-  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sfdcLoginUrl": "https://trailhead-vasudev-dev-ed.my.salesforce.com/",
   "sourceApiVersion": "57.0"
 }
