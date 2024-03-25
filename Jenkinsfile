@@ -45,7 +45,7 @@ node {
 
             stage('Authorize Org') {
 		    println 'auth org'
-                rc = command "${toolbelt}/sfdx force:auth:jwt:grant --instance-url ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file}"
+                rc = bat returnStatus: true,script: "${toolbelt} sfdx force:auth:jwt:grant --instance-url ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file}"
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
                 }
@@ -57,7 +57,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Deploy') {
-                rc = command "${toolbelt}/sfdx force:deploy:mdapi:deploy -d force-app/main/default -u ${SF_USERNAME} -w 1000 --testlevel NoTestRun"
+                rc = bat returnStdout: true, script: "${toolbelt}/sfdx force:deploy:mdapi:deploy -d force-app/main/default -u ${SF_USERNAME} -w 1000 --testlevel NoTestRun"
                 if (rc != 0) {
                     error 'Salesforce test scratch org creation failed.'
                 }
