@@ -45,7 +45,7 @@ node {
 
             stage('Authorize Org') {
 		    println 'auth org'
-                rc = bat returnStatus: true,script: "${toolbelt} sfdx force:auth:jwt:grant --instance-url ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwt-key-file ${server_key_file}"
+                rc = bat returnStatus: true,script: "${toolbelt} sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file}"
                 if (rc != 0) {
                     error 'Salesforce dev hub org authorization failed.'
                 }
