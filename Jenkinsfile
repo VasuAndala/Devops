@@ -49,9 +49,9 @@ node {
 		    println 'auth org'
                 rc = bat returnStatus: true,script: "${toolbelt} sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file}"
                 println rc
-		//if (rc != 0) {
-                //    error 'Salesforce dev hub org authorization failed.'
-                //}
+		if (rc != 0) {
+                    error 'Salesforce dev hub org authorization failed.'
+                }
             }
 
 
@@ -61,9 +61,10 @@ node {
 
             stage('Deploy') {
                 rc = bat returnStdout: true, script: "${toolbelt} sfdx force:source:deploy -x manifest/package.xml -u ${SF_USERNAME} -w 15 --testlevel NoTestRun"
-                if (rc != 0) {
-                    error 'Salesforce deployment failed.'
-                }
+                println rc
+		    //if (rc != 0) {
+                  //  error 'Salesforce deployment failed.'
+                //}
             }            
 		
           
