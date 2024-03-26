@@ -59,9 +59,9 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Deploy') {
-                rc = bat returnStdout: true, script: "${toolbelt} sfdx force:deploy:mdapi:deploy -d force-app/main/default -u ${SF_USERNAME} -w 1000 --testlevel NoTestRun"
+                rc = bat returnStdout: true, script: "${toolbelt}/sfdx force:deploy:mdapi:deploy -d force-app/main/default -u ${SF_USERNAME} -w 1000 --testlevel NoTestRun"
                 if (rc != 0) {
-                    error 'Salesforce test scratch org creation failed.'
+                    error 'Salesforce deployment failed.'
                 }
             }            
 		
