@@ -59,7 +59,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Deploy') {
-                rc = bat returnStdout: true, script: "${toolbelt} sfdx force:mdapi:deploy -x manifest/package.xml  -u ${SF_USERNAME} -w 1000 --testlevel NoTestRun"
+                rc = bat returnStdout: true, script: "${toolbelt} sfdx force:mdapi:deploy -x package.xml -u ${SF_USERNAME} -w 1000 --testlevel NoTestRun"
                 if (rc != 0) {
                     error 'Salesforce deployment failed.'
                 }
