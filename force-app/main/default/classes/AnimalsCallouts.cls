@@ -7,6 +7,7 @@
 
 public class AnimalsCallouts {
     public static HttpResponse makeGetCallout() {
+       system.debug('TESTING CODE FROM Git Repository');
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint('https://th-apex-http-callout.herokuapp.com/animals');
